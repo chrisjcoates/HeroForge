@@ -5,7 +5,7 @@ namespace HeroForge.Services
 {
     public static class BattleService
     {
-        public static void HeroAttacks(Hero hero, Enemy enemy)
+        private static void HeroAttacks(Hero hero, Enemy enemy)
         {
             var damage = enemy.Defence - hero.Defence;
             if (damage < 1) damage = 1;
@@ -14,9 +14,10 @@ namespace HeroForge.Services
             
             Console.WriteLine($"{hero.Name} attacks {enemy.Name} dealing {damage} damage.\n");
             DisplayHelper.DisplayStats(hero);
+            DisplayHelper.DisplayStats(enemy);
         }
 
-        public static void EnemyAttacks(Hero hero, Enemy enemy)
+        private static void EnemyAttacks(Hero hero, Enemy enemy)
         {
             var damage = hero.Defence - enemy.AttackPower;
             if (damage < 1) damage = 1;
@@ -25,6 +26,7 @@ namespace HeroForge.Services
             
             Console.WriteLine($"{enemy.Name} attacks {hero.Name} dealing {damage} damage.\n");
             DisplayHelper.DisplayStats(enemy);
+            DisplayHelper.DisplayStats(hero);
         }
 
         public static void StartBattle(Hero hero, Enemy enemy)
@@ -38,9 +40,19 @@ namespace HeroForge.Services
 
                 if (enemy.CurrentHp <= 0) break;
                 
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                
+                Console.Clear();
+                
                 EnemyAttacks(hero, enemy);
                 
                 if (hero.CurrentHp <= 0) break;
+                
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                
+                Console.Clear();
 
             } while (hero.CurrentHp > 0 || enemy.CurrentHp > 0);
 
