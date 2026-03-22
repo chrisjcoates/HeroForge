@@ -12,7 +12,7 @@ do
     Console.Write("Enter a name for your character: ");
     var playerName = Console.ReadLine();
 
-    string[] classes = ["Warrior", "Mage", "Rouge"];
+    string[] classes = ["Warrior", "Mage", "Rogue"];
     
     Console.WriteLine("\nClasses:\n");
     for (var i = 0; i < classes.Length; i++)
