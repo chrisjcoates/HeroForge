@@ -12,7 +12,7 @@ namespace HeroForge.Services
             
             var enemyIndex = random.Next(enemyName.Length);
             
-            var maxHp = random.Next(10, 100);
+            var maxHp = random.Next(10, 60);
             var attackPower = random.Next(5, 10);
             var defence = random.Next(5, 10);
 
