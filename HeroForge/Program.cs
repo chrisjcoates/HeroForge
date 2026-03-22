@@ -9,8 +9,25 @@ Console.WriteLine("=== Welcome to HeroForge! ===\n");
 Console.WriteLine("Create a hero and test their strength against a random enemy!\n");
 do
 {   
-    Console.Write("Enter a name for your character: ");
-    var playerName = Console.ReadLine();
+    bool validName;
+    string playerName = "";
+    do
+    {
+        Console.Write("Enter a name for your character: ");
+        var nameResponse = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(nameResponse))
+        {
+            validName = false;
+            Console.WriteLine("You must enter a name for your character.");
+        }
+        else
+        {
+            playerName = nameResponse;
+            validName = true;
+        }
+        
+    } while (!validName);
 
     string[] classes = ["Warrior", "Mage", "Rogue"];
     
@@ -39,11 +56,7 @@ do
         
     } while (!validInt);
     
-    var random = new Random();
-    var newHero = new Hero
-    {
-        Name = playerName, CharacterClass = classes[classChoice -1], MaxHp = random.Next(10, 80), AttackPower = random.Next(10, 20), Defence = random.Next(10, 20),
-    };
+    var newHero = new Hero(playerName, classes[classChoice -1]);
     newHero.CurrentHp = newHero.MaxHp;
 
     Console.Clear();
