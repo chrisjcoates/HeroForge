@@ -7,7 +7,7 @@ namespace HeroForge.Services
     {
         private static void HeroAttacks(Hero hero, Enemy enemy)
         {
-            var damage = enemy.Defence - hero.Defence;
+            var damage = hero.AttackPower - enemy.Defence;
             if (damage < 1) damage = 1;
             
             enemy.CurrentHp -= damage;
@@ -19,7 +19,7 @@ namespace HeroForge.Services
 
         private static void EnemyAttacks(Hero hero, Enemy enemy)
         {
-            var damage = hero.Defence - enemy.AttackPower;
+            var damage = enemy.AttackPower - hero.Defence;
             if (damage < 1) damage = 1;
             
             hero.CurrentHp -= damage;
@@ -54,7 +54,7 @@ namespace HeroForge.Services
                 
                 Console.Clear();
 
-            } while (hero.CurrentHp > 0 || enemy.CurrentHp > 0);
+            } while (hero.CurrentHp > 0 && enemy.CurrentHp > 0);
 
             if (hero.CurrentHp > 0)
             {
